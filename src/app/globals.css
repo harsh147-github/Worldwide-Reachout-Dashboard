@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #06060B;
+  --bg-secondary: #0C0C14;
+  --bg-tertiary: #12121E;
+  --bg-elevated: #181828;
+  --fg-primary: #E8E4DC;
+  --fg-secondary: #A09C94;
+  --fg-muted: #6B6760;
+  --accent: #E85D3A;
+  --accent-hover: #F06A48;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-elevated) transparent;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--fg-primary);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Selection */
+::selection {
+  background: rgba(232, 93, 58, 0.3);
+  color: #E8E4DC;
+}
+
+/* Status badge colors */
+.status-identified { background: rgba(107, 114, 128, 0.2); color: #9CA3AF; }
+.status-researched { background: rgba(139, 92, 246, 0.2); color: #A78BFA; }
+.status-drafted { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+.status-sent { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+.status-followed_up { background: rgba(99, 102, 241, 0.2); color: #818CF8; }
+.status-replied { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+.status-interview { background: rgba(6, 182, 212, 0.2); color: #22D3EE; }
+.status-offer { background: rgba(34, 197, 94, 0.2); color: #4ADE80; }
+.status-rejected { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+.status-not_interested { background: rgba(156, 163, 175, 0.2); color: #D1D5DB; }
+.status-archived { background: rgba(75, 85, 99, 0.2); color: #9CA3AF; }
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(232, 93, 58, 0.15), 0 0 60px rgba(232, 93, 58, 0.05);
+}
+
+/* Custom scrollbar for tables */
+.overflow-auto::-webkit-scrollbar { height: 6px; width: 6px; }
+.overflow-auto::-webkit-scrollbar-track { background: transparent; }
+.overflow-auto::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 3px; }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .animate-in {
+    animation: slideUp 0.4s ease-out both;
+  }
+}
